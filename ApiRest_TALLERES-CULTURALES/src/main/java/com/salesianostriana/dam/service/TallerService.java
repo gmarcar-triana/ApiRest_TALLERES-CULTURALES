@@ -35,10 +35,12 @@ public class TallerService {
         if (!tallerRepository.existsById(id)) {
             throw new TallerNotFoundException();
         }
-
+        taller.setTitulo(taller.getTitulo());
+        return tallerRepository.save(taller);
     }
 
-
-
+    public void deleteTaller(Long id) {
+        tallerRepository.deleteById(id);
+    }
 
 }

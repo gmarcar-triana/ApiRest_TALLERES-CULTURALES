@@ -10,6 +10,7 @@ public record EditTallerDto(
         @NotNull(message = "{editTallerDto.organiadorId.notNull}")
         Long organizadorId,
 
+
         @NotBlank(message = "{editTallerDto.titulo.notBlank}")
         String titulo,
 
