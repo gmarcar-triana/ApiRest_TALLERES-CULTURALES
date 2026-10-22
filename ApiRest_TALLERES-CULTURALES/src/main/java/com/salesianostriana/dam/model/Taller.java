@@ -1,16 +1,11 @@
 package com.salesianostriana.dam.model;
 
 import jakarta.persistence.*;
-import jakarta.servlet.http.Part;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,29 +14,29 @@ import java.util.List;
 @Builder
 public class Taller {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String titulo;
+
     private LocalDateTime fechaHoraInicio;
     private LocalDateTime fechaHoraFin;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "organizador_id", nullable = false)
     private Organizador organizador;
 
     @ManyToMany
-    private HashSet<Participante> participantes = new HashSet<>();
-
-    //@ManyToMany
-    //private List<Participante> participantes = new ArrayList<>();
+    @JoinTable(
+            name = "inscripcion",
+            joinColumns = @JoinColumn(name = "taller_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id")
+    )
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Participante> participantes = new HashSet<>();
 
 }
-
-
-/*
-id (Long, PK).
-titulo (String, único).
-fechaHoraInicio (LocalDateTime).
-fechaHoraFin (LocalDateTime).
-Asociación: Pertenece a un Organizador y
-puede tener muchos Participantes.
- */

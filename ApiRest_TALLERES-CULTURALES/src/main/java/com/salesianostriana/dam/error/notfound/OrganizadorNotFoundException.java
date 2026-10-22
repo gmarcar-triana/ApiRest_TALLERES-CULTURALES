@@ -6,7 +6,11 @@ public class OrganizadorNotFoundException extends EntityNotFoundException {
     }
 
     public OrganizadorNotFoundException() {
-        super("Organizador not found");
+        super("Organizadores no encontrados");
+    }
+
+    public OrganizadorNotFoundException(Long id) {
+        super("Organizador no encontrado con id " + id);
     }
 
 }

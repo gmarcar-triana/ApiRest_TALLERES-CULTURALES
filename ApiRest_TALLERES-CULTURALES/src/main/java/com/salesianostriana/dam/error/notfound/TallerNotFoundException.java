@@ -4,9 +4,8 @@ public class TallerNotFoundException extends EntityNotFoundException {
     public TallerNotFoundException(String message) {
         super (message);
     }
-
-    public TallerNotFoundException() {
-        super("Taller not found");
+    public TallerNotFoundException(Long id) {
+        super("Taller no encontrado con id " + id);
     }
 
 }

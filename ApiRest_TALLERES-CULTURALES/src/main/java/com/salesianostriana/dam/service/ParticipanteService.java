@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.service;
 
+import com.salesianostriana.dam.dto.EditParticipanteDto;
 import com.salesianostriana.dam.error.notfound.ParticipanteNotFoundException;
 import com.salesianostriana.dam.model.Participante;
 import com.salesianostriana.dam.repo.ParticipanteRepository;
@@ -12,37 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ParticipanteService {
 
-    private ParticipanteRepository participanteRepository;
+    private final ParticipanteRepository participanteRepository;
 
     public List<Participante> getAll(){
-        List<Participante> participantes = participanteRepository.findAll();
-        if (participantes.isEmpty()) {
-            throw new ParticipanteNotFoundException();
-        }
-        return participantes;
+        return participanteRepository.findAll();
     }
 
     public Participante getById(Long id){
         return participanteRepository.findById(id)
-                .orElseThrow(ParticipanteNotFoundException::new);
+                .orElseThrow(() -> new ParticipanteNotFoundException(id));
     }
 
-    public Participante addParticipante(Participante participante){
-        return participanteRepository.save(participante);
+    public Participante addParticipante(EditParticipanteDto dto){
+        return participanteRepository.save(dto.to());
     }
-
-    public Participante updateParticipante(Long id, Participante participante){
-        if (!participanteRepository.existsById(id)) {
-            throw new ParticipanteNotFoundException();
-        }
-        participante.setNombreCompleto(participante.getNombreCompleto());
-        return participanteRepository.save(participante);
-    }
-
-    public void deleteParticipante(Long id){
-        participanteRepository.deleteById(id);
-    }
-
-
 
 }

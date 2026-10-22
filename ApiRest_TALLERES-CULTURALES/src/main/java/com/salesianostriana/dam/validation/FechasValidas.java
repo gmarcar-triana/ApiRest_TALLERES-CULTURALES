@@ -5,15 +5,13 @@ import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueTallerTittleValidator.class)
+@Constraint(validatedBy = FechasValidasValidator.class)
 @Documented
-public @interface UniqueTallerTittle {
-
-    String message() default "El título del taller debe de ser único";
+public @interface FechasValidas {
+    String message() default "La fecha de fin debe ser posterior a la de inicio";
 
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-
 }
