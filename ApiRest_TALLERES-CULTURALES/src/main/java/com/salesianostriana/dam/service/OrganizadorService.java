@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.service;
 
+import com.salesianostriana.dam.dto.EditOrganizadorDto;
 import com.salesianostriana.dam.error.notfound.OrganizadorNotFoundException;
 import com.salesianostriana.dam.model.Organizador;
 import com.salesianostriana.dam.repo.OrganizadorRepository;
@@ -15,33 +16,27 @@ public class OrganizadorService {
     private final OrganizadorRepository organizadorRepository;
 
     public List<Organizador> getAll(){
-        List<Organizador> organizadores = organizadorRepository.findAll();
-        if (organizadores.isEmpty()) {
-            throw new OrganizadorNotFoundException();
-        }
-        return organizadores;
+        return organizadorRepository.findAll();
     }
 
     public Organizador getById(Long id){
         return organizadorRepository.findById(id)
-                .orElseThrow(OrganizadorNotFoundException::new);
+                .orElseThrow(() -> new OrganizadorNotFoundException(id));
     }
 
-    public Organizador addOrganizador(Organizador organizador){
-        return organizadorRepository.save(organizador);
+    public Organizador addOrganizador(EditOrganizadorDto dto) {
+        return organizadorRepository.save(dto.to());
     }
 
-    public Organizador updateOrganizador(Long id, Organizador organizador){
-        if (!organizadorRepository.existsById(id)) {
-            throw new OrganizadorNotFoundException();
-        }
-        organizador.setNombre(organizador.getNombre());
+    public Organizador updateOrganizador(Long id, EditOrganizadorDto dto) {
+        Organizador organizador = getById(id);
+        organizador.setNombre(dto.nombre().trim());
+        organizador.setEmail(dto.email().trim());
         return organizadorRepository.save(organizador);
     }
 
     public void deleteOrganizador(Long id){
-        organizadorRepository.deleteById(id);
+        organizadorRepository.delete(getById(id));
     }
-
 
 }

@@ -6,7 +6,11 @@ public class ParticipanteNotFoundException extends EntityNotFoundException {
     }
 
     public ParticipanteNotFoundException(){
-      super("Taller not found");
+      super("Participantes no encontrados");
+    }
+
+    public ParticipanteNotFoundException(Long id) {
+        super("Participante no encontrado con id " + id);
     }
 
 }

@@ -4,13 +4,13 @@ import com.salesianostriana.dam.model.Participante;
 import jakarta.validation.constraints.NotBlank;
 
 public record EditParticipanteDto(
-        @NotBlank(message = "{editParticipanteDto.nombre.notBlank}")
+        @NotBlank(message = "{editParticipanteDto.nombreCompleto.notBlank}")
         String nombreCompleto
 
 ) {
     public Participante to() {
         return Participante.builder()
-                .nombreCompleto(nombreCompleto)
+                .nombreCompleto(nombreCompleto.trim())
                 .build();
     }
 }

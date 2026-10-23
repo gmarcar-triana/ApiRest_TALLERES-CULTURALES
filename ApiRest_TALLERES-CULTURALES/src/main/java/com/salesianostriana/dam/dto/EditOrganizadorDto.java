@@ -6,16 +6,16 @@ import jakarta.validation.constraints.NotBlank;
 
 public record EditOrganizadorDto(
         @NotBlank(message = "{editOrganizadorDto.nombre.notBlank}")
-        String name,
+        String nombre,
 
-        @Email(message = "editOrganizadorDto.email.email")
-        @NotBlank(message = "editOrganizadorDto.email.notBlank")
+        @NotBlank(message = "{editOrganizadorDto.email.notBlank}")
+        @Email(message = "{editOrganizadorDto.email.email}")
         String email
 ) {
     public Organizador to() {
         return Organizador.builder()
-                .nombre(name)
-                .email(email)
+                .nombre(nombre.trim())
+                .email(email.trim())
                 .build();
     }
 }
