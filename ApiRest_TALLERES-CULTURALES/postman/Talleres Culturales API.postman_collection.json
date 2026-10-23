@@ -1,0 +1,1183 @@
+{
+  "info": {
+    "_postman_id": "89cea48a-3cd6-455b-a233-dd584dd3aacc",
+    "name": "Talleres Culturales API",
+    "description": "Colección de pruebas de la API REST de Talleres Culturales. Ejecutar con Run collection en orden.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58676549",
+    "_collection_link": "https://go.postman.co/collection/58676549-89cea48a-3cd6-455b-a233-dd584dd3aacc?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Organizadores",
+      "item": [
+        {
+          "name": "Crear organizador",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.expect([201]).to.include(pm.response.code));",
+                  "pm.collectionVariables.set(\"organizadorId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana López\",\n  \"email\": \"ana.lopez@centrocultural.es\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organizadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar organizadores",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener organizador por id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizadores/{{organizadorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores",
+                "{{organizadorId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar organizador",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana López Ruiz\",\n  \"email\": \"ana.lopez@centrocultural.es\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organizadores/{{organizadorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores",
+                "{{organizadorId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Participantes",
+      "item": [
+        {
+          "name": "Crear participante",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.expect([201]).to.include(pm.response.code));",
+                  "pm.collectionVariables.set(\"participanteId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreCompleto\": \"Luis Pérez Gómez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/participantes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar participantes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/participantes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Talleres",
+      "item": [
+        {
+          "name": "Crear taller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.expect([201]).to.include(pm.response.code));",
+                  "pm.test(\"Participantes vacío\", () => pm.expect(pm.response.json().participantes || []).to.have.lengthOf(0));",
+                  "pm.collectionVariables.set(\"tallerId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Cerámica para principiantes\",\n  \"fechaHoraInicio\": \"2026-11-10T17:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T19:00:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar talleres",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener taller por id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar taller (conservando su propio título)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"  CERÁMICA para principiantes \",\n  \"fechaHoraInicio\": \"2026-11-10T17:30:00\",\n  \"fechaHoraFin\": \"2026-11-10T19:30:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}"
+              ]
+            },
+            "description": "Conservar el propio título (aunque cambien mayúsculas/espacios) NO debe dar error."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Inscripciones (M:M)",
+      "item": [
+        {
+          "name": "Inscribir participante en taller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 201 o 204\", () => pm.expect([200, 201, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar participantes de un taller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));",
+                  "pm.test(\"Hay 1 inscrito\", () => pm.expect(pm.response.json()).to.have.lengthOf(1));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar inscripción",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 204\", () => pm.expect([200, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar inscripción inexistente (sin cambios)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 204\", () => pm.expect([200, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            },
+            "description": "Taller y participante existen pero no están vinculados: no debe fallar."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar participantes (lista vacía)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.expect([200]).to.include(pm.response.code));",
+                  "pm.test(\"Lista vacía\", () => pm.expect(pm.response.json()).to.have.lengthOf(0));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Re-inscribir participante",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 201 o 204\", () => pm.expect([200, 201, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Casos de error",
+      "item": [
+        {
+          "name": "Taller inexistente (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Organizador inexistente (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizadores/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Inscribir en taller inexistente (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/999999/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "999999",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Inscribir participante inexistente (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Participante ya inscrito (409)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 409 o 400\", () => pm.expect([409, 400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}",
+                "participantes",
+                "{{participanteId}}"
+              ]
+            },
+            "description": "ParticipanteYaInscritoException"
+          },
+          "response": []
+        },
+        {
+          "name": "Título duplicado ignorando mayúsculas y espacios (409)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 409 o 400\", () => pm.expect([409, 400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"  cerámica PARA principiantes  \",\n  \"fechaHoraInicio\": \"2026-11-10T17:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T19:00:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            },
+            "description": "TallerYaExisteException"
+          },
+          "response": []
+        },
+        {
+          "name": "Taller con título vacío (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"\",\n  \"fechaHoraInicio\": \"2026-11-10T17:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T19:00:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Taller con fin anterior al inicio (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Taller fechas incorrectas\",\n  \"fechaHoraInicio\": \"2026-11-10T19:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T17:00:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            },
+            "description": "Validación personalizada: fechaHoraFin > fechaHoraInicio"
+          },
+          "response": []
+        },
+        {
+          "name": "Taller con fin igual al inicio (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Taller fechas iguales\",\n  \"fechaHoraInicio\": \"2026-11-10T17:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T17:00:00\",\n  \"organizadorId\": \"{{organizadorId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Taller con organizador inexistente (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Taller sin organizador\",\n  \"fechaHoraInicio\": \"2026-11-10T17:00:00\",\n  \"fechaHoraFin\": \"2026-11-10T19:00:00\",\n  \"organizadorId\": 999999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/talleres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Organizador con email inválido (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Pepe\",\n  \"email\": \"no-es-un-email\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organizadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Organizador con nombre vacío (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"\",\n  \"email\": \"pepe@centro.es\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organizadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Participante con nombre vacío (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.expect([400]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreCompleto\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/participantes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. Limpieza (eliminar)",
+      "item": [
+        {
+          "name": "Eliminar taller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 204\", () => pm.expect([200, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar taller ya eliminado (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.expect([404]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/talleres/{{tallerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "talleres",
+                "{{tallerId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar organizador",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 o 204\", () => pm.expect([200, 204]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizadores/{{organizadorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizadores",
+                "{{organizadorId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "organizadorId",
+      "value": "1"
+    },
+    {
+      "key": "tallerId",
+      "value": "1"
+    },
+    {
+      "key": "participanteId",
+      "value": "1"
+    }
+  ]
+}
